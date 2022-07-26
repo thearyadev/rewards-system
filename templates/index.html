@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Finances</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="mt-5">
+<div class="container-fluid text-center">
+    <div class="row align-items-start">
+        <div class="container-xl pb-4 transaction-area">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <button id="buyableBtn" class="btn btn-outline-secondary dropdown-toggle dropdown-btns"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">Buyable</button>
+                        <ul class="dropdown-menu">
+                            {% for item in buyable %}
+                                <li><a class="dropdown-item" onclick="itemClick(this);" name="buyable" data-price="{{ item.price }}">{{ item.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <input id="buyableInput" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control"
+                               aria-label="Text input with dropdown button">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <button id="earnableBtn" class="btn btn-outline-secondary dropdown-toggle dropdown-btns"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">Earnable</button>
+                        <ul class="dropdown-menu">
+                            {% for item in earnable %}
+                                <li><a class="dropdown-item" onclick="itemClick(this);" name="earnable" data-price="{{ item.price }}">{{ item.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <input id="earnableInput" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control"
+                               aria-label="Text input with dropdown button">
+                    </div>
+                </div>
+                <div class="col">
+                    <h2><strong id="balance">${{ balance }}</strong></h2>
+                </div>
+            </div>
+            <button id="submitBtn" class="btn btn-outline-primary w-100 submit-btn" onclick="submit();">Add Transaction</button>
+        </div>
+        <div class="col table-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Expenses</h5>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                        <tr>
+                            <th>Date&nbsp;&nbsp;</th>
+                            <th>Item</th>
+                            <th>Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entry in expenses %}
+                            <tr>
+                                <td>{{ entry[1] | from_timestamp('%Y.%m.%d. %H:%M:%S UTC') }}</td>
+                                <td>{{ entry[2] }}</td>
+                                <td>{{ entry[3] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col table-card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Income</h5>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                        <tr>
+                            <th>Date&nbsp;</th>
+                            <th>Item</th>
+                            <th>Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entry in income %}
+                            <tr>
+                                <td>{{ entry[1] | from_timestamp('%Y.%m.%d. %H:%M:%S UTC') }}</td>
+                                <td>{{ entry[2] }}</td>
+                                <td>{{ entry[3] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="js/jquery-3.6.0.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="js/index.js" type="text/javascript"></script>
+</body>
+</html>

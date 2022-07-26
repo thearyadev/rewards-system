@@ -1,0 +1,73 @@
+body {
+    background-color: #1B2430;
+    color: white;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.dropdown-btns:hover {
+    background-color: #51557E;
+    border-color: #51557E;
+}
+
+.dropdown-btns {
+    border-color: #51557E;
+    color: white;
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: #343752 !important;
+
+}
+
+.submit-btn {
+    color: white;
+    box-shadow: none !important;
+    border-color: #51557E;
+}
+
+.submit-btn:hover {
+    background-color: #51557E;
+    border-color: #51557E;
+}
+
+.submit-btn:focus {
+    background-color: #51557E;
+    border-color: #51557E;
+}
+
+th, td {
+    color: white;
+    background-color: #51557E !important;
+}
+
+.card {
+    background-color: #51557E;
+}
+
+input {
+    color: white !important;
+    text-align: center;
+    background-color: transparent !important;
+    outline: none !important;
+    border-color: #51557E !important;
+
+
+}
+
+.transaction-area {
+    min-width: 100vw;
+
+}
+
+
+@media (max-width: 518px) {
+    .card {
+        margin-bottom: 5%;
+    }
+}
+
+@media (max-width: 772px) {
+    .transaction-area .row .col {
+        min-width: 100vw;
+    }
+}
