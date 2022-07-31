@@ -50,7 +50,7 @@ function submit() {
         $.ajax({ // send to server
             url: "/add-transaction?name=" + item + "&price=" + price,
             complete: function(){
-                window.location.reload(); // reload the page to get the updated data
+                // window.location.reload(); // reload the page to get the updated data
             }
         })
     } else if (earnableTextField.is(":disabled") === false) {
@@ -61,13 +61,9 @@ function submit() {
         $.ajax({
             url: "/add-transaction?name=" + item + "&price=" + price,
             complete: function(){
-                window.location.reload(); // reload the page to get the updated data
+                // window.location.reload(); // reload the page to get the updated data
             }
         })
     }
-
-
-
-
 
 }

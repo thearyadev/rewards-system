@@ -21,6 +21,7 @@ class WebServer(Flask):
 
     def index(self):
         data = self.finances.query_all()
+        print(self.finances.earnable, self.finances.buyable)
         return render_template("index.html", expenses=data["expenses"], income=data["income"],
                                balance=self.finances.balance(), earnable=self.finances.earnable,
                                buyable=self.finances.buyable)
@@ -34,7 +35,8 @@ class WebServer(Flask):
         if item is None:  # if no item is found, return
             return
         # if the price entered is different from the default price
-
+        old_price = item.price
         if item.price != int(request.args["price"]): item.price = request.args["price"]
         self.finances.make_transaction(item)  # make transaction
+        item.price = old_price
         return "", 200  # success
